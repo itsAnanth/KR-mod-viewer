@@ -35,7 +35,7 @@ async function find() {
 function clearList() {
     con.innerHTML = '';
 }
-
+// fix
 async function checkIfBgExists(link) {
     new Promise(r => {
         fetch(link, { headers: {
