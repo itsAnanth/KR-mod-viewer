@@ -35,17 +35,17 @@ async function find() {
 function clearList() {
     con.innerHTML = '';
 }
-// fix
-function checkIfBgExists(link) {
-    var http = new XMLHttpRequest();
+function imageExists(url, callback) {
+    return new Promise(r => {
+        var img = new Image();
+    img.onload = function() { r(true); };
+    img.onerror = function() { r(false); };
+    img.src = url;
+    })
+  }
+  
 
-    http.open('HEAD', link, false);
-    http.send();
-
-    return http.status != 404;
-}
-
-function displayMod(element) {
+async function displayMod(element) {
     const link = document.createElement("a");
     const div = document.createElement("div");
     const img = document.createElement("img");
@@ -56,10 +56,13 @@ function displayMod(element) {
     name.className = 'mod-name'
 
     let endp = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
-    let thumb = checkIfBgExists(endp);
+    // let thumb = checkIfBgExists(endp);
     // let thumbnail = thumb ? endp : './Assets/NoThumb.png';
-    console.log(thumb)
-    let thumbnail = endp
+    // console.log(thumb)
+    let thumbnail;
+    const t = await imageExists(endp);
+    console.log(t);
+    t ? thumbnail = endp : thumbnail = './Assets/NoThumb.png'
     if (element.mod_url == "ua") link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`;
     else link.href = element.mod_url;
     div.className = "mod";
