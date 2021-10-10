@@ -41,11 +41,12 @@ async function checkIfBgExists(link) {
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
         'origin': 'https://krunker.io',
     }, mode: 'no-cors', method: 'GET' }).catch(console.error);
+    console.log(res, await res.text())
     if (!res) return;
     return await res.text();
 }
 
-function displayMod(element) {
+async function displayMod(element) {
     const link = document.createElement("a");
     const div = document.createElement("div");
     const img = document.createElement("img");
@@ -63,7 +64,6 @@ function displayMod(element) {
     link.textContent = 'Download'
 
     img.src = './Assets/NoThumb.png'
-    console.log('>>>>>>' , !thumbnail)
     // img.src = thumbnail;
     creator.innerHTML = `<span>by </span>${element.creatorname}`;
     name.innerHTML = element.mod_name;
