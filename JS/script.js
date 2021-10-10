@@ -42,8 +42,8 @@ async function checkIfBgExists(link) {
         'origin': 'https://krunker.io',
     }, mode: 'no-cors', method: 'GET' }).catch(console.error);
     console.log(res, await res.text())
-    if (!res) return;
-    return await res.text();
+    if (!res) return undefined;
+    return link;
 }
 
 async function displayMod(element) {
@@ -57,14 +57,15 @@ async function displayMod(element) {
     name.className = 'mod-name'
 
     // let thumbnail = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
-    checkIfBgExists(`https://user-assets.krunker.io/md${element.mod_id}/thumb.png`);
+    let thumb = checkIfBgExists(`https://user-assets.krunker.io/md${element.mod_id}/thumb.png`);
+    let thumbnail = thumb ? thumb : './Assets/NoThumb.png';
     if (element.mod_url == "ua") link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`;
     else link.href = element.mod_url;
     div.className = "mod";
     link.textContent = 'Download'
 
-    img.src = './Assets/NoThumb.png'
-    // img.src = thumbnail;
+    // img.src = './Assets/NoThumb.png'
+    img.src = thumbnail;
     creator.innerHTML = `<span>by </span>${element.creatorname}`;
     name.innerHTML = element.mod_name;
     // div.style.padding = '20px'
