@@ -36,19 +36,16 @@ function clearList() {
     con.innerHTML = '';
 }
 // fix
-async function checkIfBgExists(link) {
-    new Promise(r => {
-        fetch(link, { headers: {
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
-            'origin': 'https://krunker.io',
-        }, mode: 'no-cors', method: 'GET' }).catch(e => r(undefined))
-        .then(x => console.log(x));
-        
-        r(true);
-    })
+function checkIfBgExists(link) {
+    var http = new XMLHttpRequest();
+
+    http.open('HEAD', link, false);
+    http.send();
+
+    return http.status != 404;
 }
 
-async function displayMod(element) {
+function displayMod(element) {
     const link = document.createElement("a");
     const div = document.createElement("div");
     const img = document.createElement("img");
@@ -59,9 +56,10 @@ async function displayMod(element) {
     name.className = 'mod-name'
 
     let endp = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
-    let thumb = await checkIfBgExists(endp);
-    let thumbnail = thumb ? endp : './Assets/NoThumb.png';
-    console.log(thumb, thumbnail);
+    let thumb = checkIfBgExists(endp);
+    // let thumbnail = thumb ? endp : './Assets/NoThumb.png';
+    console.log(thumb)
+    let thumbnail = endp
     if (element.mod_url == "ua") link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`;
     else link.href = element.mod_url;
     div.className = "mod";
