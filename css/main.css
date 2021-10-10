@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    /* color: white; */
+}
+
+:root {
+    --peach-color: #fb839e;
+    --particle-purple: #8a49ff;
+    --particle-yellow: #ff9c07;
+    --particle-cyan: #06d79c;
+    --particle-light-cyan: #4dd0e1;
+    --particle-red: rgb(240, 44, 44);
+    --particle-green: #49d610;
+    --dark: #222222;
+}
+
+html, a, button {
+    cursor: url('../Assets/cursor.png'), auto !important;
+}
+
+html, body {
+    padding: 0 !important;
+    margin: 0 !important;
+    /* width: 100% !important;
+    height: 100% !important; */
+}
+
+body {
+    /* background: var(--dark); */
+    line-height: 1.5;
+    overflow-x: hidden !important;
+}
+
+img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+
+.mod-input-container {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.creator {
+    font-weight: 500;
+}
+
+.name {
+    font-weight: 700;
+}
+
+.box {
+    margin: 15px !important;
+    padding: 10px !important;
+    opacity: 0.93 !important;
+    border: 1.7px solid var(--particle-yellow) !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+    border-radius: 5px !important;
+    display: table !important;
+    box-shadow: 4px 5px 4px 3px rgba(89, 4, 168, 0.137) !important;
+    overflow: hidden !important;
+    transition: all 0.4s ease 0s !important;
+}
+
+.box:hover {
+    /* border-radius: 30% !important; */
+    transform: scale(1.05) !important;
+    overflow: hidden !important;
+    border: 2.2px solid var(--particle-red) !important;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #2d1950;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgba(178, 121, 216, 0.959);
+    border-radius: 12px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(222, 130, 235, 0.911);
+    border-radius: 12px;
+}
+
+
+/* .mods {
+    padding-top: 200px !important;
+} */
