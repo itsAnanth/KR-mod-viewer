@@ -56,7 +56,6 @@ async function displayMod(element) {
     creator.className = 'creator'
     name.className = 'mod-name'
 
-    // let thumbnail = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
     let endp = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
     let thumb = await checkIfBgExists(endp);
     let thumbnail = thumb ? endp : './Assets/NoThumb.png';
