@@ -29,7 +29,7 @@ async function find() {
         displayMod(element);
     });
 
-    
+
 }
 
 function clearList() {
@@ -38,12 +38,12 @@ function clearList() {
 function imageExists(url, callback) {
     return new Promise(r => {
         var img = new Image();
-    img.onload = function() { r(true); };
-    img.onerror = function() { r(false); };
-    img.src = url;
+        img.onload = function () { r(true); };
+        img.onerror = function () { r(false); };
+        img.src = url;
     })
-  }
-  
+}
+
 
 async function displayMod(element) {
     const link = document.createElement("a");
@@ -56,30 +56,22 @@ async function displayMod(element) {
     name.className = 'mod-name'
 
     let endp = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
-    // let thumb = checkIfBgExists(endp);
-    // let thumbnail = thumb ? endp : './Assets/NoThumb.png';
-    // console.log(thumb)
     let thumbnail;
     const t = await imageExists(endp);
-    console.log(t);
     t ? thumbnail = endp : thumbnail = './Assets/NoThumb.png'
-    if (element.mod_url == "ua") link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`;
-    else link.href = element.mod_url;
+    element.mod_url == "ua" ?
+        link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`
+        :
+        link.href = element.mod_url;
     div.className = "mod";
     link.textContent = 'Download'
-
-    // img.src = './Assets/NoThumb.png'
-    img.src = thumbnail;
-    creator.innerHTML = `<span>by </span>${element.creatorname}`;
-    name.innerHTML = element.mod_name;
-    // div.style.padding = '20px'
-    div.appendChild(img);   
-    // div.appendChild(link);
-    div.appendChild(name);
-    div.appendChild(creator);
     div.className = 'col-md-2 col-4 box';
+    img.src = thumbnail;
+    creator.innerHTML = `by ${element.creatorname}`;
+    name.innerHTML = element.mod_name;
+    for (el of [img, name, creator, link])
+        div.appendChild(el);
     con.appendChild(div);
-    div.appendChild(link)
 }
 
 find();

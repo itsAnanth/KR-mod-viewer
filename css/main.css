@@ -55,7 +55,9 @@ img {
     padding-top: 20px !important;
     font-weight: 700 !important;
 }
-
+h1 {
+    text-align: center;
+}
 .box {
     margin: 15px !important;
     padding: 10px !important;
