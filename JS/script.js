@@ -56,7 +56,7 @@ async function displayMod(element) {
     creator.className = 'creator'
     name.className = 'mod-name'
 
-    let thumbnail = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
+    // let thumbnail = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
     checkIfBgExists(`https://user-assets.krunker.io/md${element.mod_id}/thumb.png`);
     if (element.mod_url == "ua") link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`;
     else link.href = element.mod_url;
