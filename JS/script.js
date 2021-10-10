@@ -37,9 +37,12 @@ function clearList() {
 }
 
 async function checkIfBgExists(link) {
-    const res = await fetch(link).catch(console.error);
+    const res = await fetch(link, { headers: {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
+        'origin': 'https://krunker.io',
+    } }).catch(console.error);
     if (!res) return;
-    console.log(await res.text());
+    return await res.text();
 }
 
 function displayMod(element) {
@@ -51,25 +54,21 @@ function displayMod(element) {
     name.className = 'name'
     creator.className = 'creator'
     name.className = 'mod-name'
-    // fetch('https://user-assets.krunker.io/md${element.mod_id}/thumb.png').then(res => {
-    //     if (res.status == 403) return;
-    //     else console.log(res);
-    // })
-    // .catch(e => {})
-    // let thumbnail = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
+
+    let thumbnail = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
     checkIfBgExists('https://user-assets.krunker.io/md${element.mod_id}/thumb.png');
     if (element.mod_url == "ua") link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`;
     else link.href = element.mod_url;
     div.className = "mod";
     link.textContent = 'Download'
 
-    
-    // if (!thumbnail) thumbnail = './NoThumb.png';
+    img.src = './Assets/NoThumb.png'
+    console.log('>>>>>>' , !thumbnail)
     // img.src = thumbnail;
     creator.innerHTML = `<span>by </span>${element.creatorname}`;
     name.innerHTML = element.mod_name;
     // div.style.padding = '20px'
-    // div.appendChild(img);   
+    div.appendChild(img);   
     // div.appendChild(link);
     div.appendChild(name);
     div.appendChild(creator);
