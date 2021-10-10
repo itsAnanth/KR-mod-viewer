@@ -34,6 +34,7 @@ body {
 }
 
 img {
+    border-radius: 20px;
     max-width: 100% !important;
     max-height: 100% !important;
 }
@@ -51,7 +52,8 @@ img {
 }
 
 .name {
-    font-weight: 700;
+    padding-top: 20px !important;
+    font-weight: 700 !important;
 }
 
 .box {
