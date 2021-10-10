@@ -37,13 +37,13 @@ function clearList() {
 }
 
 async function checkIfBgExists(link) {
-    const res = await fetch(link, { headers: {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
-        'origin': 'https://krunker.io',
-    }, mode: 'no-cors', method: 'GET' }).catch(console.error);
-    console.log(res, await res.text())
-    if (!res) return undefined;
-    return link;
+    new Promise(r => {
+        await fetch(link, { headers: {
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
+            'origin': 'https://krunker.io',
+        }, mode: 'no-cors', method: 'GET' }).catch(e => r(undefined));
+        resolve(true);
+    })
 }
 
 async function displayMod(element) {
@@ -57,8 +57,9 @@ async function displayMod(element) {
     name.className = 'mod-name'
 
     // let thumbnail = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
-    let thumb = checkIfBgExists(`https://user-assets.krunker.io/md${element.mod_id}/thumb.png`);
-    let thumbnail = thumb ? thumb : './Assets/NoThumb.png';
+    let endp = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
+    let thumb = await checkIfBgExists(endp);
+    let thumbnail = thumb ? endp : './Assets/NoThumb.png';
     if (element.mod_url == "ua") link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`;
     else link.href = element.mod_url;
     div.className = "mod";
